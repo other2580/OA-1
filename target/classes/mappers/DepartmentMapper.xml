@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="oa.dao.DepartmentDao">
+	<!-- 增加新的部门 -->
+	<insert id="add" parameterType="Department" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO Department(NAME,Description,STATUS) VALUES(#{name},#{description},#{status});
+	</insert>
+	<!-- 删除部门 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM Department WHERE id=#{id}
+	</delete>
+	<!-- 修改部门信息 -->
+	<update id="update" parameterType="Department">
+		UPDATE Department
+		<set>
+			<if test="name != null">name = #{name},</if>
+			<if test="description != null">description = #{description},</if>
+			<if test="status != null">status = #{status}</if>
+		</set>
+		<where>id = #{id}</where>
+	</update>
+	<!-- 根据ID获取部门对象 -->
+	<select id="fetchDepartmentById" resultType="Department" parameterType="int">
+		SELECT * FROM Department WHERE id = #{id}
+	</select>
+	<!-- 根据名称获取部门对象 -->
+	<select id="fetchDepartmentByName" resultType="Department" parameterType="string">
+		SELECT * FROM Department WHERE name = #{name}
+	</select>
+	<!-- 获取全部部门信息 -->
+	<select id="fetchAllDepartment" resultType="Department">
+		SELECT * FROM Department
+	</select>
+</mapper>
