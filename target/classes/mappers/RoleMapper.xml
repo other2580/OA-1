@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="oa.dao.RoleDao">
+	<!-- 添加新角色 -->
+	<insert id="add" parameterType="Role" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO Role(Name) VALUES(#{name})
+	</insert>
+	<!-- 删除角色 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM Role WHERE id = #{id}
+	</delete>
+	<!-- 修改角色 -->
+	<update id="update" parameterType="Role">
+		UPDATE Role SET name = #{name} WHERE id = #{id}
+	</update>
+	
+	<!-- 根据Id 查找角色信息 -->
+	<select id="fetchRoleById" resultType="Role" parameterType="int">
+		SELECT id, name FROM Role WHERE id = #{id}
+	</select>
+	<!-- 根据角色名查找角色信息 -->
+	<select id="fetchRoleByName" resultType="Role" parameterType="string">
+		SELECT id, name FROM Role WHERE name = #{name}
+	</select>
+	<!-- 查找全部角色信息 -->
+	<select id="fetchAllRole" resultType="Role">
+		SELECT id, name FROM Role
+	</select>
+</mapper>
