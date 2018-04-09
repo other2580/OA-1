@@ -7,7 +7,7 @@ package oa.entity;
  *
  */
 public class Role {
-	private int id; // update 
+	private int id; // origin
 	private String name; // 角色名称
 
 	public Role() {
