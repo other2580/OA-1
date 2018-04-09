@@ -2,24 +2,31 @@ package oa.entity;
 
 import java.sql.Date;
 
+/**
+ * 活动日程
+ * 
+ * @author 34761
+ *
+ */
 public class Activity {
 	private int id;
-	private int creatorid;
-	private Date createtime;
-	private String title;
-	private String description;
-	private String location;
-	private Date starttime;
-	private Date endtime;
+	// private int creatorid; // 创建者Id
+	private Employee creator; // 创建者
+	private Date createtime; // 创建时间
+	private String title; // 活动名称
+	private String description; // 描述
+	private String location; // 地点
+	private Date starttime; // 开始时间
+	private Date endtime; // 结束时间
 
 	public Activity() {
 	}
 
-	public Activity(int id, int creatorid, Date createtime, String title, String description, String location,
+	public Activity(int id, Employee creator, Date createtime, String title, String description, String location,
 			Date starttime, Date endtime) {
 		super();
 		this.id = id;
-		this.creatorid = creatorid;
+		this.creator = creator;
 		this.createtime = createtime;
 		this.title = title;
 		this.description = description;
@@ -36,12 +43,12 @@ public class Activity {
 		this.id = id;
 	}
 
-	public int getCreatorid() {
-		return creatorid;
+	public Employee getCreator() {
+		return creator;
 	}
 
-	public void setCreatorid(int creatorid) {
-		this.creatorid = creatorid;
+	public void setCreator(Employee creator) {
+		this.creator = creator;
 	}
 
 	public Date getCreatetime() {
