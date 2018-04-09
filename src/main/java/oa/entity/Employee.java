@@ -12,6 +12,7 @@ public class Employee {
 	private String password; // 员工登录密码
 	private String name; // 姓名
 	private int gender; // 性别
+	// private int departmentId; // 所属部门id
 	private Department department; // 所属部门
 	private int isManager; // 是否是部门管理员
 	private int status; // 员工状态（0-注销，1-可用，2-暂停）
