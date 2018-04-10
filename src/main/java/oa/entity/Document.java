@@ -9,7 +9,7 @@ import java.util.List;
  * @author 34761
  *
  */
-public class Docment {
+public class Document {
 	private int id;
 	private String name; // 文件名称
 	private String description; // 文件描述
@@ -19,14 +19,14 @@ public class Docment {
 	private String type; // 类型（'FOLDER'-文件夹，'docx'...-文件）
 	private String fileUrl; // 文件保存路径
 	// private int parentId; // 父级id
-	private Docment parent; // 父级对象
-	private List<Docment> docments; // 文件集合
+	private Document parent; // 父级对象
+	private List<Document> docments; // 文件集合
 
-	public Docment() {
+	public Document() {
 	}
 
-	public Docment(int id, String name, String description, Employee creator, Date createTime, String type,
-			String fileUrl, Docment parent, List<Docment> docments) {
+	public Document(int id, String name, String description, Employee creator, Date createTime, String type,
+			String fileUrl, Document parent, List<Document> docments) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -95,19 +95,19 @@ public class Docment {
 		this.fileUrl = fileUrl;
 	}
 
-	public Docment getParent() {
+	public Document getParent() {
 		return parent;
 	}
 
-	public void setParent(Docment parent) {
+	public void setParent(Document parent) {
 		this.parent = parent;
 	}
 
-	public List<Docment> getDocments() {
+	public List<Document> getDocments() {
 		return docments;
 	}
 
-	public void setDocments(List<Docment> docments) {
+	public void setDocments(List<Document> docments) {
 		this.docments = docments;
 	}
 }
