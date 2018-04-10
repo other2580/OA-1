@@ -1,7 +1,5 @@
 package oa.dao;
 
-import static org.junit.Assert.fail;
-
 import java.util.Date;
 
 import org.junit.Test;
@@ -30,7 +28,7 @@ public class MessageAttachmentDaoTest {
 	public void testAdd() {
 		System.out.println("----测试添加附件----");
 		Employee creator = new Employee(1, "nr000", "password", "name", "", 1, new Department(1, null, null, 1), 0, 1);
-		Message message = new Message(0, "title", "content", creator, new Date(), "receivers", 1, 1, 1);
+		Message message = new Message(1, "title", "content", creator, new Date(), "receivers", 1, 1, 1);
 		MessageAttachment ma = new MessageAttachment(0, "name", "fileUrl", message);
 		target.add(ma);
 		if(ma.getId() > 0)
@@ -42,7 +40,14 @@ public class MessageAttachmentDaoTest {
 
 	@Test
 	public void testDelete() {
-		fail("Not yet implemented");
+		System.out.println("----测试删除附件----");
+		try {
+			target.delete(1);
+			System.out.println("删除成功！");
+		} catch (Exception e) {
+			System.err.println("删除失败！");
+		}
+		System.out.println("----END----");
 	}
 
 	@Test

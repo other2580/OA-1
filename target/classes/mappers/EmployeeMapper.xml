@@ -37,7 +37,7 @@
 			LEFT JOIN Department AS d ON(e.DepartmentId = d.id)
 	</sql>
 	
-	<resultMap type="Employee" id="RMEmployee">
+	<resultMap type="Employee" id="EmployeeResultMap">
 		<id column="id" property="id"/>
 		<result column="nr" property="nr"/>
 		<result column="password" property="password"/>
@@ -57,15 +57,15 @@
 	</resultMap>
 	
 	<!-- 根据员工 Id查找员工 -->
-	<select id="fetchEmployeeById" resultMap="RMEmployee" parameterType="int">
+	<select id="fetchEmployeeById" resultMap="EmployeeResultMap" parameterType="int">
 		<include refid="sql" /> WHERE e.id = #{id}
 	</select>
 	<!-- 根据员工 编号查找员工 -->
-	<select id="fetchEmployeeByNr" resultMap="RMEmployee" parameterType="string">
+	<select id="fetchEmployeeByNr" resultMap="EmployeeResultMap" parameterType="string">
 		<include refid="sql" /> WHERE nr = #{nr}
 	</select>
 	<!-- 获取所有员工信息 -->
-	<select id="fetchAllEmployee" resultMap="RMEmployee">
+	<select id="fetchAllEmployee" resultMap="EmployeeResultMap">
 		<include refid="sql" />
 	</select>
 </mapper>

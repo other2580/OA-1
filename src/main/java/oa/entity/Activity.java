@@ -1,6 +1,6 @@
 package oa.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * 活动日程
@@ -16,14 +16,14 @@ public class Activity {
 	private String title; // 活动名称
 	private String description; // 描述
 	private String location; // 地点
-	private Date starttime; // 开始时间
-	private Date endtime; // 结束时间
+	private Date startTime; // 开始时间
+	private Date endTime; // 结束时间
 
 	public Activity() {
 	}
 
 	public Activity(int id, Employee creator, Date createtime, String title, String description, String location,
-			Date starttime, Date endtime) {
+			Date startTime, Date endTime) {
 		super();
 		this.id = id;
 		this.creator = creator;
@@ -31,8 +31,8 @@ public class Activity {
 		this.title = title;
 		this.description = description;
 		this.location = location;
-		this.starttime = starttime;
-		this.endtime = endtime;
+		this.startTime = startTime;
+		this.endTime = endTime;
 	}
 
 	public int getId() {
@@ -83,19 +83,19 @@ public class Activity {
 		this.location = location;
 	}
 
-	public Date getStarttime() {
-		return starttime;
+	public Date getStartTime() {
+		return startTime;
 	}
 
-	public void setStarttime(Date starttime) {
-		this.starttime = starttime;
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
 	}
 
-	public Date getEndtime() {
-		return endtime;
+	public Date getEndTime() {
+		return endTime;
 	}
 
-	public void setEndtime(Date endtime) {
-		this.endtime = endtime;
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
 	}
 }

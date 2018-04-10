@@ -39,7 +39,7 @@
 			  LEFT JOIN Department AS d ON(a.DepartmentId = d.id)
 	</sql>
 	
-	<resultMap type="Announcement" id="RMAnnouncement">
+	<resultMap type="Announcement" id="AnnouncementResultMap">
 		<id column="id" property="id"/>
 		<result column="title" property="title"/>
 		<result column="content" property="content"/>
@@ -61,11 +61,11 @@
 	</resultMap>
 	
 	<!-- 根据公告Id 查找公告信息 -->
-	<select id="fetchAnnouncementById" resultMap="RMAnnouncement" parameterType="int">
+	<select id="fetchAnnouncementById" resultMap="AnnouncementResultMap" parameterType="int">
 		<include refid="sql" /> where a.id = #{id}
 	</select>
 	<!-- 根据部门Id 查找公告信息 -->
-	<select id="fetchAnnouncementByDepartmentId" resultMap="RMAnnouncement" parameterType="int">
+	<select id="fetchAnnouncementByDepartmentId" resultMap="AnnouncementResultMap" parameterType="int">
 		<include refid="sql" /> where a.departmentId = #{departmentId}
 	</select>
 </mapper>
