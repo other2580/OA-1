@@ -57,4 +57,12 @@ public interface EmployeeDao {
 	 * @return 员工对象集合
 	 */
 	List<Employee> fetchAllEmployee();
+	
+	/**
+	 * 登录
+	 * 
+	 * @return 员工对象
+	 */
+	Employee checkLogin(@Param("nr") String nr,@Param("password") String password);
+	
 }
