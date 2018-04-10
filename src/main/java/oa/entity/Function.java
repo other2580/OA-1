@@ -1,5 +1,6 @@
 package oa.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,24 +14,24 @@ public class Function {
 	private String name; // 功能名称
 	private String code; // 功能编码
 	private int isMenuItem; // 是否是菜单项
-	private String menuLog; // 菜单项的Logo
+	private String menuLogo; // 菜单项的Logo
 	private String menuEntry; // 菜单项入口Url
 	// private int parentId; // 父级功能ID
 	private Function parent; // 父级对象
-	private List<Function> functions; // 功能集合
+	private List<Function> functions = new ArrayList<>(); // 功能集合
 
 	public Function() {
 
 	}
 
-	public Function(int id, String name, String code, int isMenuItem, String menuLog, String menuEntry, Function parent,
-			List<Function> functions) {
+	public Function(int id, String name, String code, int isMenuItem, String menuLogo, String menuEntry,
+			Function parent, List<Function> functions) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.code = code;
 		this.isMenuItem = isMenuItem;
-		this.menuLog = menuLog;
+		this.menuLogo = menuLogo;
 		this.menuEntry = menuEntry;
 		this.parent = parent;
 		this.functions = functions;
@@ -68,12 +69,12 @@ public class Function {
 		this.isMenuItem = isMenuItem;
 	}
 
-	public String getMenuLog() {
-		return menuLog;
+	public String getMenuLogo() {
+		return menuLogo;
 	}
 
-	public void setMenuLog(String menuLog) {
-		this.menuLog = menuLog;
+	public void setMenuLogo(String menuLogo) {
+		this.menuLogo = menuLogo;
 	}
 
 	public String getMenuEntry() {

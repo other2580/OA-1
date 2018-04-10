@@ -21,8 +21,8 @@
 			<if test="title != null">title = #{title},</if>
 			<if test="description != null">description = #{description},</if>
 			<if test="location != null">location = #{location},</if>
-			<if test="starttime != null">starttime = #{starttime},</if>
-			<if test="endtime != null">endtime = #{endtime},</if>
+			<if test="startTime != null">startTime = #{startTime},</if>
+			<if test="endTime != null">endTime = #{endTime},</if>
 		</set>
 		<where>
 			id = #{id}
@@ -35,8 +35,8 @@
 		<result column="title" property="title"/>
 		<result column="description" property="description"/>
 		<result column="location" property="location"/>
-		<result column="starttime" property="starttime"/>
-		<result column="endtime" property="endtime"/>
+		<result column="startTime" property="startTime"/>
+		<result column="endTime" property="endTime"/>
 		
 		<association property="creator" column="creatorId" 
 			javaType="Employee" select="oa.dao.EmployeeDao.fetchEmployeeById" />
