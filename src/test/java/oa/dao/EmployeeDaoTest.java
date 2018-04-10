@@ -2,6 +2,7 @@ package oa.dao;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
@@ -88,4 +89,15 @@ public class EmployeeDaoTest {
 		System.out.println("----END----");
 	}
 
+	@Test
+	public void testCheckLogin() {
+		System.out.println("----登录测试----");
+		Employee employee = target.checkLogin("Nr001", "123");
+		if(employee==null)
+			System.out.println("登录失败，用户名或密码错误");
+		else
+			System.out.println("登录成功:你好,"+employee.getName());
+		System.out.println("----END----");
+	}
+	
 }
