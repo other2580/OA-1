@@ -18,6 +18,7 @@
 			<if test="nr != null">nr = #{nr},</if>
 			<if test="password != null">password = #{password},</if>
 			<if test="name != null">name = #{name},</if>
+			<if test="email != null">email = #{email},</if>
 			<if test="gender != null">gender = #{gender},</if>
 			<if test="department != null">DepartmentId = #{department.id},</if>
 			<if test="isManager != null">IsManager = #{isManager},</if>
@@ -41,6 +42,7 @@
 		<result column="nr" property="nr"/>
 		<result column="password" property="password"/>
 		<result column="name" property="name"/>
+		<result column="email" property="email"/>
 		<result column="gender" property="gender"/>
 		<result column="isManager" property="isManager"/>
 		<result column="status" property="status"/>
