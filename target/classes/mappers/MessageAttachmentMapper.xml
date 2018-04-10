@@ -6,14 +6,14 @@
 	<!-- 添加邮件附件 -->
 	<insert id="add" parameterType="MessageAttachment" keyProperty="id" useGeneratedKeys="true">
 		INSERT INTO MessageAttachment(NAME, FileUrl, MessageId) 
-			VALUES(#{name}, #{fileUrl}, #{message})
+			VALUES(#{name}, #{fileUrl}, #{message.id})
 	</insert>
 	<!-- 根据附件Id 删除邮件附件 -->
 	<delete id="delete" parameterType="int">
 		DELETE FROM MessageAttachment WHERE messageId = #{messageId}
 	</delete>
 	
-	<resultMap type="MessageAttachment" id="RM_MessageAttachment">
+	<resultMap type="MessageAttachment" id="MessageAttachmentResultMap">
 		<id column="id" property="id"/>
 		<result column="name" property="name" />
 		<result column="FileUrl" property="fileUrl"/>
@@ -22,7 +22,7 @@
 	</resultMap>
 	
 	<!-- 根据邮件Id 查找附件 -->
-	<select id="fetchMessageAttachmentByMSID" resultMap="RM_MessageAttachment" parameterType="int">
-		SELECT * FROM MessageAttachment WHERE messageId = #{message.id}
+	<select id="fetchMessageAttachmentByMSID" resultMap="MessageAttachmentResultMap" parameterType="int">
+		SELECT * FROM MessageAttachment WHERE messageId = #{messageId}
 	</select>
 </mapper>

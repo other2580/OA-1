@@ -16,7 +16,7 @@
 	<sql id="sql">
 		SELECT * FROM Message
 	</sql>
-	<resultMap type="Message" id="RMMessage">
+	<resultMap type="Message" id="MessageResultMap">
 		<id column="id" property="id"/>
 		<result column="title" property="title"/>
 		<result column="content" property="content"/>
@@ -29,7 +29,7 @@
 			javaType="Employee" select="oa.dao.EmployeeDao.fetchEmployeeById" />
 	</resultMap>
 	<!-- 根据邮件Id 查询邮件 -->
-	<select id="fetchMessageById" resultMap="RMMessage" parameterType="int">
+	<select id="fetchMessageById" resultMap="MessageResultMap" parameterType="int">
 		<include refid="sql" /> where id = #{id}
 	</select>
 </mapper>
