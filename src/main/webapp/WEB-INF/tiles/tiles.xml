@@ -5,7 +5,7 @@
  <tiles-definitions>
  	<definition name="defaultTemplate" template="/WEB-INF/jsp/shared/defaultTemplate.jsp">
  	</definition>
- 	<definition name="tiles" extends="defaultTemplate">
+ 	<definition name="head" extends="defaultTemplate">
  		<put-attribute name="main" value="/WEB-INF/jsp/index.jsp"/>
  	</definition>
  </tiles-definitions>
