@@ -26,7 +26,7 @@ public class DocumentDaoTest {
 	@Test
 	public void testAdd() {
 		System.out.println("----测试添加新的文档----");
-		Employee creator = new Employee(1, "nr000", "password", "name", "", 1, new Department(1, null, null, 1), 0, 1);
+		Employee creator = new Employee(1, "nr000", "password", "name", "", 1, new Department(1, null, null, 1), 0, 1, null);
 		Document document = new Document(0, "name", "description", creator, new Date(), "type", "fileUrl", null, null);
 		target.add(document);
 		if (document.getId() > 0)

@@ -1,6 +1,8 @@
 package oa.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 活动日程
@@ -18,12 +20,13 @@ public class Activity {
 	private String location; // 地点
 	private Date startTime; // 开始时间
 	private Date endTime; // 结束时间
+	private List<Employee> participant = new ArrayList<>(); // 活动参与者
 
 	public Activity() {
 	}
 
 	public Activity(int id, Employee creator, Date createtime, String title, String description, String location,
-			Date startTime, Date endTime) {
+			Date startTime, Date endTime, List<Employee> participant) {
 		super();
 		this.id = id;
 		this.creator = creator;
@@ -33,6 +36,7 @@ public class Activity {
 		this.location = location;
 		this.startTime = startTime;
 		this.endTime = endTime;
+		this.participant = participant;
 	}
 
 	public int getId() {
@@ -97,5 +101,13 @@ public class Activity {
 
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
+	}
+
+	public List<Employee> getParticipant() {
+		return participant;
+	}
+
+	public void setParticipant(List<Employee> participant) {
+		this.participant = participant;
 	}
 }

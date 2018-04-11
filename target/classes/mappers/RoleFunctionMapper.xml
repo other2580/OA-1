@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="oa.dao.RoleFunctionDao">
+	<!-- 添加新的角色与功能关联 -->
+	<insert id="add" parameterType="RoleFunction" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO RoleFunction(RoleId, functionId) 
+			VALUES(#{roleId}, #{functionId});
+	</insert>
+	<!-- 删除指定的角色与功能关联 -->
+	<delete id="delete" parameterType="hashmap">
+		DELETE FROM RoleFunction WHERE RoleId = #{roleId} AND FunctionId = #{functionId}
+	</delete>
+	<!-- 删除与该角色相关的功能关联 -->
+	<delete id="deleteAll" parameterType="int">
+		DELETE FROM RoleFunction WHERE RoleId = #{roleId}
+	</delete>
+	<!-- 修改角色与功能关联 -->
+	<update id="update" parameterType="RoleFunction">
+		UPDATE RoleFunction SET RoleId = #{roleId}, FunctionId = #{functionId} WHERE id = #{id}
+	</update>
+</mapper>

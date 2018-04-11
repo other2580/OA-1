@@ -26,7 +26,7 @@ public class MessageDaoTest {
 	@Test
 	public void testAdd() {
 		System.out.println("---测试添加邮件---");
-		Employee creator = new Employee(1, "nr000", "password", "name", "", 1, new Department(1, null, null, 1), 0, 1);
+		Employee creator = new Employee(1, "nr000", "password", "name", "", 1, new Department(1, null, null, 1), 0, 1, null);
 		Message message = new Message(0, "title", "content", creator, new Date(), "receivers", 1, 1, 1);
 		target.add(message);
 		if (message.getId() > 0)

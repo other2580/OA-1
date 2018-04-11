@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import oa.entity.Department;
 import oa.entity.Employee;
+import oa.entity.Role;
 
 @ContextConfiguration("classpath:spring-beans.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -23,7 +24,8 @@ public class EmployeeDaoTest {
 	@Test
 	public void testAdd() {
 		System.out.println("----测试添加新员工----");
-		Employee employee = new Employee(0, "nr000", "password", "name", "", 1, new Department(1, null, null, 1), 0, 1);
+		Employee employee = new Employee(0, "nr000", "password", "name", "", 1, new Department(1, null, null, 1), 0, 1,
+				null);
 		target.add(employee);
 		if (employee.getId() > 0) {
 			System.out.println("添加成功！");
@@ -48,7 +50,7 @@ public class EmployeeDaoTest {
 	public void testUpdate() {
 		System.out.println("----测试更新员工信息----");
 		Employee employee = new Employee(1, "nr000", "password", "update", "", 1, new Department(1, null, null, 1), 0,
-				1);
+				1, null);
 		try {
 			target.update(employee);
 			Employee temp = target.fetchEmployeeById(1);
@@ -85,6 +87,10 @@ public class EmployeeDaoTest {
 		System.out.println("----测试获取全部员工信息----");
 		for (Employee e : target.fetchAllEmployee()) {
 			System.out.println("姓名：" + e.getName() + "，所属部门：" + e.getDepartment().getName());
+			System.out.println("角色：");
+			for (Role role : e.getRoles()) {
+				System.out.println("\t" + role.getName());
+			}
 		}
 		System.out.println("----END----");
 	}

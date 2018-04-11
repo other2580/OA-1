@@ -26,8 +26,8 @@ public class AnnouncementDaoTest {
 	@Test
 	public void testAdd() {
 		System.out.println("---测试添加新的公告----");
-		Employee creator = new Employee(1, "nr000", "password", "name", "", 1, new Department(1, null, null, 1), 0, 1);
-		Employee approver = new Employee(2, "nr000", "password", "name", "", 1, new Department(1, null, null, 1), 0, 1);
+		Employee creator = new Employee(1, "nr000", "password", "name", "", 1, new Department(1, null, null, 1), 0, 1, null);
+		Employee approver = new Employee(2, "nr000", "password", "name", "", 1, new Department(1, null, null, 1), 0, 1, null);
 		Department department = new Department(1, "add", "description", 1);
 		Announcement announcement = new Announcement(0, "title", "content", creator, new Date(), new Date(), approver,
 				new Date(), department, 1);

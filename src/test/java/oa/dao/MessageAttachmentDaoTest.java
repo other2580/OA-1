@@ -27,7 +27,7 @@ public class MessageAttachmentDaoTest {
 	@Test
 	public void testAdd() {
 		System.out.println("----测试添加附件----");
-		Employee creator = new Employee(1, "nr000", "password", "name", "", 1, new Department(1, null, null, 1), 0, 1);
+		Employee creator = new Employee(1, "nr000", "password", "name", "", 1, new Department(1, null, null, 1), 0, 1, null);
 		Message message = new Message(1, "title", "content", creator, new Date(), "receivers", 1, 1, 1);
 		MessageAttachment ma = new MessageAttachment(0, "name", "fileUrl", message);
 		target.add(ma);
