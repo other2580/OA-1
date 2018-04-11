@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="oa.dao.FunctionDao">
+	<!-- 添加新的功能 -->
+	<insert id="add" parameterType="Function" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO FUNCTION(`name`, `code`, IsMenuItem, MenuLogo, MenuEntry, ParentId)
+			VALUES(#{name}, #{code}, #{isMenuItem}, #{menuLogo}, #{menuEntry}, #{parent.id})
+	</insert>
+	<!-- 删除功能 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM Function WHERE id = #{id} OR ParentId = #{id}
+	</delete>
+	<!-- 修改功能 -->
+	<update id="update" parameterType="Function">
+		UPDATE Function
+		<set>
+			<if test="name != null">name = #{name},</if>
+			<if test="code != null">code = #{code},</if>
+			<if test="isMenuItem != null">isMenuItem = #{isMenuItem},</if>
+			<if test="menuLogo != null">menuLogo = #{menuLogo},</if>
+			<if test="menuEntry != null">menuEntry = #{menuEntry},</if>
+			<if test="1 == 1">parentId = #{parent.id},</if>
+		</set>
+		<where>
+			id = #{id}
+		</where>
+	</update>
+	
+	<resultMap type="Function" id="FunctionResultMap">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="code" property="code"/>
+		<result column="isMenuItem" property="isMenuItem"/>
+		<result column="menuLogo" property="menuLogo"/>
+		<result column="menuEntry" property="menuEntry"/>
+		
+		<!-- 父板块 -->
+		<association property="parent" column="id" select="fetchFunctionById" />
+		
+		<!-- 子板块 -->
+		<collection property="functions" column="id" select="fetchChildrenFunctions" />
+	</resultMap>
+	
+	<!-- 查找全部根节点 -->
+	<select id="fetchAllFunction" resultMap="FunctionResultMap">
+		SELECT * FROM Function where parentId is null
+	</select>
+	<!-- 根据功能Id 查找功能 -->
+	<select id="fetchFunctionById" resultMap="FunctionResultMap" parameterType="int">
+		SELECT * FROM Function WHERE id = #{id}
+	</select>
+	<!-- 查找功能的子集 -->
+	<select id="fetchChildrenFunctions" resultMap="FunctionResultMap" parameterType="int">
+		SELECT * FROM Function WHERE parentId = #{parentId}
+	</select>
+</mapper>

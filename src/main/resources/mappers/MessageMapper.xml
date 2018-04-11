@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="oa.dao.MessageDao">
+	<!-- 添加新邮件 -->
+	<insert id="add" parameterType="Message" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO Message(Title,Content,CreatorId,SendTime,Receivers,LEVEL,STATUS,IsSent) 
+			VALUES(#{title}, #{content}, #{creator.id}, #{sendTime}, #{receivers}, #{level}, #{status}, #{isSent})
+	</insert>
+	<!-- 删除邮件 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM Message WHERE id = #{id}
+	</delete>
+	
+	<sql id="sql">
+		SELECT * FROM Message
+	</sql>
+	<resultMap type="Message" id="MessageResultMap">
+		<id column="id" property="id"/>
+		<result column="title" property="title"/>
+		<result column="content" property="content"/>
+		<result column="SendTime" property="sendTime"/>
+		<result column="Receivers" property="receivers"/>
+		<result column="LEVEL" property="level"/>
+		<result column="STATUS" property="status"/>
+		<result column="IsSent" property="isSent"/>
+		<association property="creator" column="creatorId" 
+			javaType="Employee" select="oa.dao.EmployeeDao.fetchEmployeeById" />
+	</resultMap>
+	<!-- 根据邮件Id 查询邮件 -->
+	<select id="fetchMessageById" resultMap="MessageResultMap" parameterType="int">
+		<include refid="sql" /> where id = #{id}
+	</select>
+</mapper>

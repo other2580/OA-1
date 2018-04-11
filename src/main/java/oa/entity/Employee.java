@@ -11,6 +11,7 @@ public class Employee {
 	private String nr; // 员工编号
 	private String password; // 员工登录密码
 	private String name; // 姓名
+	private String email; // 邮箱
 	private int gender; // 性别
 	// private int departmentId; // 所属部门id
 	private Department department; // 所属部门
@@ -20,13 +21,14 @@ public class Employee {
 	public Employee() {
 	}
 
-	public Employee(int id, String nr, String password, String name, int gender, Department department, int isManager,
-			int status) {
+	public Employee(int id, String nr, String password, String name, String email, int gender, Department department,
+			int isManager, int status) {
 		super();
 		this.id = id;
 		this.nr = nr;
 		this.password = password;
 		this.name = name;
+		this.email = email;
 		this.gender = gender;
 		this.department = department;
 		this.isManager = isManager;
@@ -63,6 +65,14 @@ public class Employee {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public int getGender() {

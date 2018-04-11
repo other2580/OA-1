@@ -19,6 +19,8 @@ public class Announcement {
 	// private int approverId; // 审批者Id
 	private Employee approver; // 审阅者
 	private Date approveTime; // 审批时间
+	// private int departmentId; // 所属部门Id
+	private Department department; // 所属部门
 	private int status; // 公告状态（0-草拟，1-待审批，2-通过审批，3-审批驳回，4-注销）
 
 	public Announcement() {
@@ -26,7 +28,7 @@ public class Announcement {
 	}
 
 	public Announcement(int id, String title, String content, Employee creator, Date createTime, Date lastEditTime,
-			Employee approver, Date approveTime, int status) {
+			Employee approver, Date approveTime, Department department, int status) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -36,6 +38,7 @@ public class Announcement {
 		this.lastEditTime = lastEditTime;
 		this.approver = approver;
 		this.approveTime = approveTime;
+		this.department = department;
 		this.status = status;
 	}
 
@@ -101,6 +104,14 @@ public class Announcement {
 
 	public void setApproveTime(Date approveTime) {
 		this.approveTime = approveTime;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 	public int getStatus() {

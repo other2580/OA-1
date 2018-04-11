@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="oa.dao.AnnouncementDao">
+	<!-- 新增公告 -->
+	<insert id="add" parameterType="Announcement" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO Announcement(Title,Content,CreatorId,CreateTime,LastEditTime,ApproverId,ApproveTime,DepartmentId,STATUS) 
+			Values(#{title}, #{content}, #{creator.id}, #{createTime}, #{lastEditTime}, #{approver.id}, #{approveTime}, #{department.id}, #{status})
+	</insert>
+	<!-- 删除公告 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM Announcement WHERE id = #{id}
+	</delete>
+	<!-- 修改公告信息 -->
+	<update id="update" parameterType="Announcement">
+		UPDATE Announcement
+		<set>
+			<if test="title != null">title = #{title},</if>
+			<if test="content != null">content = #{content},</if>
+			<if test="creator != null">creatorId = #{creator.id},</if>
+			<if test="createTime != null">createTime = #{createTime},</if>
+			<if test="lastEditTime != null">lastEditTime = #{lastEditTime},</if>
+			<if test="approver != null">approverId = #{approver.id},</if>
+			<if test="approveTime">approveTime = #{approveTime},</if>
+			<if test="department != null">DepartmentId = #{department.id},</if>
+			<if test="status != null">status = #{status},</if>
+		</set>
+		<where>
+			id = #{id}
+		</where>
+	</update>
+	
+	<sql id="sql">
+		SELECT a.*,d.name AS 'department_name',
+		   d.description AS 'department_description',
+		   d.status AS 'department_status' 
+		   FROM Announcement AS a
+			  LEFT JOIN Department AS d ON(a.DepartmentId = d.id)
+	</sql>
+	
+	<resultMap type="Announcement" id="AnnouncementResultMap">
+		<id column="id" property="id"/>
+		<result column="title" property="title"/>
+		<result column="content" property="content"/>
+		<result column="createTime" property="createTime"/>
+		<result column="lastEditTime" property="lastEditTime"/>
+		<result column="approveTime" property="approveTime"/>
+		<result column="status" property="status"/>
+		
+		<association property="department" javaType="Department">
+			<id column="departmentId" property="id"/>
+			<result column="department_name" property="name"/>
+			<result column="department_description" property="description"/>
+			<result column="department_status" property="status"/>
+		</association>
+		<association property="creator" column="creatorId" 
+			javaType="Employee" select="oa.dao.EmployeeDao.fetchEmployeeById" />
+		<association property="approver" column="approverId" 
+			javaType="Employee" select="oa.dao.EmployeeDao.fetchEmployeeById" />
+	</resultMap>
+	
+	<!-- 根据公告Id 查找公告信息 -->
+	<select id="fetchAnnouncementById" resultMap="AnnouncementResultMap" parameterType="int">
+		<include refid="sql" /> where a.id = #{id}
+	</select>
+	<!-- 根据部门Id 查找公告信息 -->
+	<select id="fetchAnnouncementByDepartmentId" resultMap="AnnouncementResultMap" parameterType="int">
+		<include refid="sql" /> where a.departmentId = #{departmentId}
+	</select>
+</mapper>

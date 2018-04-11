@@ -24,7 +24,7 @@ public class EmployeeDaoTest {
 	@Test
 	public void testAdd() {
 		System.out.println("----测试添加新员工----");
-		Employee employee = new Employee(0, "nr000", "password", "name", 1, new Department(1, null, null, 1), 0, 1);
+		Employee employee = new Employee(0, "nr000", "password", "name", "", 1, new Department(1, null, null, 1), 0, 1);
 		target.add(employee);
 		if (employee.getId() > 0) {
 			System.out.println("添加成功！");
@@ -48,11 +48,12 @@ public class EmployeeDaoTest {
 	@Test
 	public void testUpdate() {
 		System.out.println("----测试更新员工信息----");
-		Employee employee = new Employee(1, "nr000", "password", "update", 1, new Department(1, null, null, 1), 0, 1);
+		Employee employee = new Employee(1, "nr000", "password", "update", "", 1, new Department(1, null, null, 1), 0,
+				1);
 		try {
 			target.update(employee);
 			Employee temp = target.fetchEmployeeById(1);
-			System.out.println(temp.getName());			
+			System.out.println(temp.getName());
 		} catch (Exception e) {
 			System.out.println("修改失败！");
 		}
