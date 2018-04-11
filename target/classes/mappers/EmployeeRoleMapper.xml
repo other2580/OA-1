@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="oa.dao.EmployeeRoleDao">
+	<!-- 添加员工角色关系 -->
+	<insert id="add" parameterType="EmployeeRole" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO EmployeeRole(EmployeeId, RoleId) 
+			VALUES(#{employeeId}, #{roleId});
+	</insert>
+	<!-- 指定删除员工角色关系 -->
+	<delete id="delete" parameterType="hashmap">
+		DELETE FROM EmployeeRole WHERE EmployeeId = #{employeeId} AND RoleId = #{roleId}
+	</delete>
+	<!-- 删除员工的全部角色关系 -->
+	<delete id="deleteAll" parameterType="int">
+		DELETE FROM EmployeeRole WHERE EmployeeId = #{employeeId}
+	</delete>
+	<!-- 修改员工的角色关系 -->
+	<update id="update" parameterType="EmployeeRole">
+		UPDATE EmployeeRole SET EmployeeId = #{employeeId}, RoleId = #{roleId} WHERE id = #{id}
+	</update>
+</mapper>

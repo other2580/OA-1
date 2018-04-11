@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="oa.dao.ActivityActorDao">
+	<!-- 添加新的活动参加者 -->
+	<insert id="add" parameterType="Activity" keyProperty="id" useGeneratedKeys="true">
+		 INSERT INTO `myoa`.`activityactor` (`ActivityId`, `ActorId`) 
+		 	VALUES (#{activityId}, #{actorId}); 
+	</insert>
+	<!-- 删除指定的活动参与者 -->
+	<delete id="delete" parameterType="hashmap">
+		DELETE FROM ActivityActor WHERE ActivityId = #{activityId} AND ActorId = #{actorId}
+	</delete>
+	<!-- 删除所有的活动参与者 -->
+	<delete id="deleteAll" parameterType="int">
+		DELETE FROM ActivityActor WHERE ActivityId = #{activityId}
+	</delete>
+	
+	<!-- 修改参与者信息 -->
+	<update id="update" parameterType="ActivityActor">
+		
+	</update>
+</mapper>
