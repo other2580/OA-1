@@ -1,5 +1,8 @@
 package oa.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 员工类
  * 
@@ -17,12 +20,13 @@ public class Employee {
 	private Department department; // 所属部门
 	private int isManager; // 是否是部门管理员
 	private int status; // 员工状态（0-注销，1-可用，2-暂停）
+	private List<Role> roles = new ArrayList<>(); // 角色集合
 
 	public Employee() {
 	}
 
 	public Employee(int id, String nr, String password, String name, String email, int gender, Department department,
-			int isManager, int status) {
+			int isManager, int status, List<Role> roles) {
 		super();
 		this.id = id;
 		this.nr = nr;
@@ -33,6 +37,7 @@ public class Employee {
 		this.department = department;
 		this.isManager = isManager;
 		this.status = status;
+		this.roles = roles;
 	}
 
 	public int getId() {
@@ -105,5 +110,13 @@ public class Employee {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 }

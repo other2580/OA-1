@@ -29,6 +29,12 @@
 		</where>
 	</update>
 	
+	
+	<sql id="sql">
+		SELECT a.*, b.*
+		FROM Activity AS a
+			LEFT JOIN ActivityActor AS b ON(b.ActivityId = a.id)
+	</sql>
 	<resultMap type="Activity" id="ActivityResultMap">
 		<id column="id" property="id"/>
 		<result column="createtime" property="createtime"/>
@@ -40,10 +46,12 @@
 		
 		<association property="creator" column="creatorId" 
 			javaType="Employee" select="oa.dao.EmployeeDao.fetchEmployeeById" />
+		<collection property="participant" column="ActorId" 
+			 ofType="Employee" select="oa.dao.EmployeeDao.fetchEmployeeById"/>
 	</resultMap>
 	
 	<!-- 根据日程Id 查询日程 -->
 	<select id="fetchActivityById" resultMap="ActivityResultMap" parameterType="int">
-		SELECT * FROM Activity WHERE id = #{id}
+		<include refid="sql" /> WHERE a.id = #{id}
 	</select>
 </mapper>

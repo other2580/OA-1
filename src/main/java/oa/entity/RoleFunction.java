@@ -8,19 +8,17 @@ package oa.entity;
  */
 public class RoleFunction {
 	private int id;
-	// private int roleId; // 角色Id
-	// private int functionId; // 功能Id
-	private Role role; // 角色对象
-	private Function function; // 功能对象
+	private int roleId; // 角色Id
+	private int functionId; // 功能Id
 
 	public RoleFunction() {
 	}
 
-	public RoleFunction(int id, Role role, Function function) {
+	public RoleFunction(int id, int roleId, int functionId) {
 		super();
 		this.id = id;
-		this.role = role;
-		this.function = function;
+		this.roleId = roleId;
+		this.functionId = functionId;
 	}
 
 	public int getId() {
@@ -31,19 +29,19 @@ public class RoleFunction {
 		this.id = id;
 	}
 
-	public Role getRole() {
-		return role;
+	public int getRoleId() {
+		return roleId;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
 	}
 
-	public Function getFunction() {
-		return function;
+	public int getFunctionId() {
+		return functionId;
 	}
 
-	public void setFunction(Function function) {
-		this.function = function;
+	public void setFunctionId(int functionId) {
+		this.functionId = functionId;
 	}
 }

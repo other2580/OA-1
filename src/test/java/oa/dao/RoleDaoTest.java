@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import oa.entity.Function;
 import oa.entity.Role;
 
 @ContextConfiguration("classpath:spring-beans.xml")
@@ -22,7 +23,7 @@ public class RoleDaoTest {
 	@Test
 	public void testAdd() {
 		System.out.println("----测试添加新的角色信息----");
-		Role role = new Role(0, "add");
+		Role role = new Role(0, "add", null);
 		target.add(role);
 		if (role.getId() > 0)
 			System.out.println("添加新角色成功!");
@@ -46,7 +47,7 @@ public class RoleDaoTest {
 	@Test
 	public void testUpdate() {
 		System.out.println("----测试更改角色信息----");
-		Role role = new Role(1, "update");
+		Role role = target.fetchRoleById(1);
 		try {
 			target.update(role);
 			System.out.println(role.getName());
@@ -73,8 +74,9 @@ public class RoleDaoTest {
 		Role role = target.fetchRoleByName("Admin");
 		if (role == null)
 			System.out.println("获取失败，没有找到相对应的角色！");
-		else
+		else {
 			System.out.println(role.getName());
+		}
 		System.out.println("---END---");
 	}
 
@@ -83,6 +85,10 @@ public class RoleDaoTest {
 		System.out.println("----测试查询全部角色信息----");
 		for (Role r : target.fetchAllRole()) {
 			System.out.println(r.getName());
+			System.out.println("功能：");
+			for (Function f : r.getFunctions()) {
+				System.out.println("\t" + f.getName());
+			}
 		}
 		System.out.println("----END----");
 	}

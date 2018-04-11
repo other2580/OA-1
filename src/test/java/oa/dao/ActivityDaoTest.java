@@ -26,10 +26,12 @@ public class ActivityDaoTest {
 	@Test
 	public void testAdd() {
 		System.out.println("----测试添加新的日程----");
-		Employee creator = new Employee(1, "nr000", "password", "name", "", 1, new Department(1, null, null, 1), 0, 1);
-		Activity activity = new Activity(0, creator, new Date(), "title", "description", "location", new Date(), new Date());
+		Employee creator = new Employee(1, "nr000", "password", "name", "", 1, new Department(1, null, null, 1), 0, 1,
+				null);
+		Activity activity = new Activity(0, creator, new Date(), "title", "description", "location", new Date(),
+				new Date(), null);
 		target.add(activity);
-		if(activity.getId() > 0)
+		if (activity.getId() > 0)
 			System.out.println("添加新日程成功！");
 		else
 			System.out.println("添加日程失败！");
@@ -68,8 +70,13 @@ public class ActivityDaoTest {
 		Activity activity = target.fetchActivityById(1);
 		if (activity == null)
 			System.out.println("没有查找到相对应的日程！");
-		else
+		else {
 			System.out.println(activity.getTitle());
+			System.out.println("活动参与者：");
+			for (Employee e : activity.getParticipant()) {
+				System.out.println("\t" + e.getName());
+			}
+		}
 		System.out.println("----END---");
 	}
 

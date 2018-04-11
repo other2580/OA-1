@@ -8,19 +8,17 @@ package oa.entity;
  */
 public class EmployeeRole {
 	private int id;
-	// private int employeeId; // 员工Id
-	// private int roleId; // 角色Id
-	private Employee employee; // 员工对象
-	private Role role; // 角色对象
+	private int employeeId; // 员工Id
+	private int roleId; // 角色Id
 
 	public EmployeeRole() {
 	}
 
-	public EmployeeRole(int id, Employee employee, Role role) {
+	public EmployeeRole(int id, int employeeId, int roleId) {
 		super();
 		this.id = id;
-		this.employee = employee;
-		this.role = role;
+		this.employeeId = employeeId;
+		this.roleId = roleId;
 	}
 
 	public int getId() {
@@ -31,19 +29,19 @@ public class EmployeeRole {
 		this.id = id;
 	}
 
-	public Employee getEmployee() {
-		return employee;
+	public int getEmployeeId() {
+		return employeeId;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
 	}
 
-	public Role getRole() {
-		return role;
+	public int getRoleId() {
+		return roleId;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
 	}
 }

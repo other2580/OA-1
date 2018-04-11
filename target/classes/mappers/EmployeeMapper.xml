@@ -30,11 +30,15 @@
 	</update>
 	
 	<sql id="sql">
-		SELECT e.*,d.name AS 'department_name',
+		SELECT e.*,
+		 d.name AS 'department_name',
 		 d.description AS 'department_description',
-		 d.status AS 'department_status' 
+		 d.status AS 'department_status',
+		 r.id AS role_id,
+		 r.`Name` AS role_name
 		 FROM Employee AS e
 			LEFT JOIN Department AS d ON(e.DepartmentId = d.id)
+			LEFT JOIN Role AS r ON(r.`Id` IN (SELECT RoleId FROM EmployeeRole WHERE employeeId = e.`Id`))
 	</sql>
 	
 	<resultMap type="Employee" id="EmployeeResultMap">
@@ -46,6 +50,8 @@
 		<result column="gender" property="gender"/>
 		<result column="isManager" property="isManager"/>
 		<result column="status" property="status"/>
+		
+		<!-- 填充部门 -->
 		<association property="department" javaType="Department">
 			<id column="departmentId" property="id"/>
 			<result column="department_name" property="name"/>
@@ -54,6 +60,11 @@
 		</association>
 		<!-- <association property="department" column="departmentId" 
 			javaType="Department" select="oa.dao.DepartmentDao.fetchDepartmentById" /> -->
+		<!-- 填充角色 -->
+		<collection property="roles" ofType="Role">
+			<id column="role_id" property="id"/>
+			<result column="role_name" property="name"/>
+		</collection>
 	</resultMap>
 	
 	<!-- 根据员工 Id查找员工 -->
