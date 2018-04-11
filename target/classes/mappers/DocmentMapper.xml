@@ -37,9 +37,15 @@
 		<result column="type" property="type"/>
 		<result column="fileUrl" property="fileUrl"/>
 		
+		<!-- 加载创建者 -->
 		<association property="creator" column="creatorId" 
 			javaType="Employee" select="oa.dao.EmployeeDao.fetchEmployeeById" />
-		
+		<!-- 加载父级对象 -->
+		<association property="parent" column="id" 
+			javaType="Document" select="fetchDocumentById" />
+		<!-- 加载子节点 -->
+		<collection property="documents" column="id" 
+			ofType="Document" select="fetchChildrenDocuments" />
 	</resultMap>
 	
 	<!-- 查找全部根节点 -->
@@ -48,6 +54,12 @@
 	</select>
 	
 	<!-- 根据文件Id 查找文件 -->
-	<select id="fetchDocumentById"></select>
-	<!-- Children -->
+	<select id="fetchDocumentById" resultMap="DocumentResultMap" parameterType="int">
+		SELECT * FROM Document WHERE id = #{id}
+	</select>
+	
+	<!-- 查询子节点 -->
+	<select id="fetchChildrenDocuments" resultMap="DocumentResultMap" parameterType="int">
+		SELECT * FROM Document WHERE parentId = #{parentId}
+	</select>
 </mapper>

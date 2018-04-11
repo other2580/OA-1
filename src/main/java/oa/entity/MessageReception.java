@@ -1,7 +1,7 @@
 package oa.entity;
 
 /**
- * 右键接受记录
+ * 邮件接受记录
  * 
  * @author 34761
  *
@@ -9,7 +9,7 @@ package oa.entity;
 public class MessageReception {
 	private int id;
 	// private int messageId; // 邮件主体Id
-	// private int receiverId; // 邮件接受者
+	// private int receiverId; // 邮件接收者
 	private Message message; // 邮件主体
 	private Employee receiver; // 邮件接收者
 	private int isRead; // 是否已读
