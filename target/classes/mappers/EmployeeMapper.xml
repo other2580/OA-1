@@ -68,4 +68,10 @@
 	<select id="fetchAllEmployee" resultMap="EmployeeResultMap">
 		<include refid="sql" />
 	</select>
+	
+	<!-- 登录 -->
+	<select id="checkLogin" resultMap="RMEmployee" >
+		<include refid="sql" /> where nr=#{nr} and password=#{password}
+	</select>
+	
 </mapper>
