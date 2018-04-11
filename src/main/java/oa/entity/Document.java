@@ -20,13 +20,13 @@ public class Document {
 	private String fileUrl; // 文件保存路径
 	// private int parentId; // 父级id
 	private Document parent; // 父级对象
-	private List<Document> docments; // 文件集合
+	private List<Document> documents; // 文件集合
 
 	public Document() {
 	}
 
 	public Document(int id, String name, String description, Employee creator, Date createTime, String type,
-			String fileUrl, Document parent, List<Document> docments) {
+			String fileUrl, Document parent, List<Document> documents) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -36,7 +36,7 @@ public class Document {
 		this.type = type;
 		this.fileUrl = fileUrl;
 		this.parent = parent;
-		this.docments = docments;
+		this.documents = documents;
 	}
 
 	public int getId() {
@@ -103,11 +103,11 @@ public class Document {
 		this.parent = parent;
 	}
 
-	public List<Document> getDocments() {
-		return docments;
+	public List<Document> getDocuments() {
+		return documents;
 	}
 
-	public void setDocments(List<Document> docments) {
-		this.docments = docments;
+	public void setDocuments(List<Document> documents) {
+		this.documents = documents;
 	}
 }

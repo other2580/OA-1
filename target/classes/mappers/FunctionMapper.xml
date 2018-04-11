@@ -52,7 +52,7 @@
 		SELECT * FROM Function WHERE id = #{id}
 	</select>
 	<!-- 查找功能的子集 -->
-	<select id="fetchChildrenFunctions" parameterType="int" resultMap="FunctionResultMap">
+	<select id="fetchChildrenFunctions" resultMap="FunctionResultMap" parameterType="int">
 		SELECT * FROM Function WHERE parentId = #{parentId}
 	</select>
 </mapper>
